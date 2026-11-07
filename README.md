@@ -1,75 +1,150 @@
-# 🏆 Auction App - README 📄
+# Blockchain Auction
 
-## 👥 Contributors
+An Ethereum auction application built with Solidity, React, and Express. Connect a MetaMask wallet to create auctions, place bids, and manage your listings.
 
-- Azza Shell
-- Ahmed Rami Belghuith
-- Mohamed Taha Mourali
-- Mahdi Koubaa
+The project combines smart contracts for bidding and payments with an Express API and MongoDB for auction details and uploaded images.
 
-### 📽️ YouTube Demo Video
+[Watch the demo on YouTube](https://youtu.be/9Hzm0YKola8)
 
-Check out the full demo of the application on [YouTube](https://youtu.be/9Hzm0YKola8).
+## Features
 
-## 📜 Project Description
+- **Wallet connection:** Connect MetaMask to submit transactions from your Ethereum account.
+- **Auction creation:** Add a title, description, starting price, duration, and item photos.
+- **Bidding:** Browse listings and submit bids through the smart contract. When a higher bid is accepted, the contract refunds the previous highest bidder.
+- **Auction management:** View active and inactive listings, end your auctions, claim proceeds, and delete old listings from the application.
 
-The Auction App is a decentralized 🛍️ platform where users can create auctions, bid 🤑 on items, and manage their auction activities. This application is designed to make the auctioning process simple, transparent, and highly secure, ensuring that users can trust the platform for their auction needs. The application is divided into three main components, each offering unique functionalities to enhance the user experience:
+## Screenshots
 
-### 📸 Screenshots
+### Connect with MetaMask
 
-- **Login with MetaMask**: ![Login Screenshot](auction-app/screenshots/1.png)
-- **Create Auction Page**: ![Create Auction Screenshot](auction-app/screenshots/2.png)
-- **Active Auctions**: ![Active Auctions Screenshot](auction-app/screenshots/3.png)
-- **Inactive Auctions**: ![Inactive Auctions Screenshot](auction-app/screenshots/4.png)
-- **Place a Bid**: ![Place Bid Screenshot](auction-app/screenshots/5.png)
+![MetaMask wallet connection screen](auction-app/screenshots/1.png)
 
-- **🏠 Home**: Users can view 👀 and bid 💸 items available in ongoing auctions. The home page provides an intuitive layout where users can see all the active auctions and make bids directly. Each item displays all relevant details, such as the current highest bid, auction duration, and item description, making it easy for users to participate in auctions without confusion.
-- **📝 Create Auction**: This section allows users to create new auctions with detailed item information. Users can set the item title, description, starting price, duration, and even add images to showcase their auction items. This feature provides complete control to users over how their items are presented, and the process is guided step-by-step to ensure a seamless experience.
-- **👤 Profile**: Users can view their active and inactive auctions, end ⏹️ auctions, delete 🗑️ old ones, and claim money 💰 from ended auctions. It helps users manage their auctions effectively, allowing them to see auction statuses and easily interact with their completed auctions.
+### Create an auction
 
-The platform leverages blockchain ⛓️ technology to ensure transparency 🔍 and security 🔒 during auction creation and bidding. By using smart contracts, the entire bidding process is handled without intermediaries, guaranteeing that users get a fair, immutable, and fully transparent auction experience. This means that every auction creation, and transaction is securely recorded on the blockchain, providing unparalleled trustworthiness.
+![Auction creation form](auction-app/screenshots/2.png)
 
-## ✨ Features
+### Active auctions
 
-- **💼 Smart Contract**: Tracks auction creations and bids on items. The smart contract is designed to automatically execute when conditions are met, ensuring fair competition and eliminating manual intervention.
-- **🔐 Secure Authentication**: Wallet management with MetaMask 🦊, allowing users to securely log in, manage their funds, and participate in auctions. Users can easily connect their wallets to the app, ensuring their transactions are encrypted and protected.
-- **⏱️ Real-Time Updates**: Provides real-time updates for active and inactive auctions, ensuring that users are always aware of the current status of auctions. Notifications are sent for bid confirmations, outbids, and auction endings, providing a dynamic and engaging user experience.
+![Active auction listings](auction-app/screenshots/3.png)
 
-## 🛠️ Technologies Used
+### Inactive auctions
 
-- **Frontend**: React.js ⚛️, which provides a responsive and user-friendly interface that makes interacting with auctions easy and intuitive.
-- **Backend**: Express.js ⚙️, used to manage the application logic and interact with the database and blockchain components efficiently.
-- **Database**: MongoDB 🍃, used for storing auction details, user information, and bidding history. MongoDB provides a flexible, scalable database solution that can easily handle the dynamic data requirements of an auction platform.
-- **Blockchain**: Solidity ⛓️ smart contract, ensuring that the entire auction process is secure, automated, and trustless.
-- **Tools**:
-  - **MetaMask** 🦊: For authentication and wallet management, enabling users to securely connect their wallets and handle transactions directly from the browser.
-  - **Truffle** 🍫: For compiling and deploying smart contracts. Truffle also provides testing utilities, making it easy to verify contract behavior before deploying to the blockchain.
-  - **Ganache** 🥃: For creating accounts and deploying contracts locally, providing a personal Ethereum blockchain for testing and development purposes.
+![Inactive auction listings](auction-app/screenshots/4.png)
 
-## 🚀 How to Run the Project
+### Place a bid
 
-1. **Set Up Ganache 🥃**: Start Ganache to create accounts and deploy the contract locally. Ganache provides a local blockchain instance that helps in simulating the network where contracts can be tested and transactions performed without costs.
-2. **Run Frontend and Backend ⚛️⚙️**: Run both the frontend and backend servers. The frontend server, powered by React.js, offers the user interface, while the backend server, using Express.js, handles business logic and interacts with the database and blockchain components.
-3. **MetaMask Setup 🦊**: Install the MetaMask browser extension and log in to connect with the auction app. MetaMask serves as the bridge between the user's browser and the blockchain, enabling secure authentication and transaction management.
+![Bidding interface](auction-app/screenshots/5.png)
 
-### Detailed Steps:
+## How it works
 
-- **Clone the Repositories**: Clone the repositories for both the frontend and backend from GitHub.
-- **Install Dependencies**: Use `npm install` to install the required dependencies for the frontend, backend, and smart contract.
-- **Deploy Contracts**: Use Truffle to compile and migrate the smart contracts to the local Ganache instance.
-- **Run Servers**: Use `npm start` to run the frontend and backend servers, making the application accessible on `localhost`.
-- **Connect MetaMask**: Ensure MetaMask is set to the correct local network and connect your wallet to the application.
+1. A seller creates an auction through the React interface. MetaMask requests approval for the contract transaction.
+2. The contract records the auction owner and deadline. The backend stores the listing details, photos, and associated blockchain auction ID.
+3. Bidders submit ETH through MetaMask. The contract tracks the highest bid and refunds the previous highest bidder when a higher bid is accepted.
+4. The seller uses the profile page to end an auction or claim its proceeds. The backend tracks the listing's display status.
 
-## 📁 Folder Structure
+Auction metadata and images are stored off-chain. Deleting a listing from the application does not remove its blockchain transaction history.
 
-- **auction-app** 📂: Contains the smart contract developed in Solidity ⛓️. This folder includes all necessary contract files, migration scripts, and testing utilities. The contracts ensure that the auction process is trustless and all transactions are verifiable.
-- **auction-app-front** 📂: Holds the frontend code using React.js ⚛️ and its components. It includes pages for Home, Create Auction, and Profile, as well as reusable UI components that provide a seamless user experience.
-- **auction-backend** 📂: Contains the backend logic developed using Express.js ⚙️. This folder includes the server setup, API routes, database models, and middleware used for user authentication and auction management.
+## Technology stack
 
-### Additional Information
+| Component | Technologies |
+| --- | --- |
+| Frontend | React 18, Bootstrap, React Bootstrap, Web3.js |
+| Backend | Node.js, Express, Mongoose |
+| Storage | MongoDB, GridFS for uploaded images |
+| Smart contracts | Solidity 0.8.19 |
+| Local blockchain tools | Truffle, Ganache, MetaMask |
 
-The Auction App was built with a focus on decentralization, ensuring that no central authority has control over the auctions. All actions related to creating auctions, placing bids, and managing transactions are securely recorded on the blockchain, making it impossible to alter or manipulate any records. The use of blockchain technology also allows for a high level of transparency, giving users the confidence that all auctions are conducted fairly.
+## Local setup
 
-Furthermore, the UI/UX design was developed with simplicity in mind, allowing users of all technical backgrounds to easily navigate the platform. With real-time updates and notifications, users can actively engage in auctions without having to constantly check back. This user-centric approach makes the Auction App not only functional but also enjoyable to use.
+### Prerequisites
 
-The combination of cutting-edge technologies such as React, Solidity, MetaMask, and MongoDB creates a powerful and secure auction platform that redefines how auctions are conducted online. By leveraging the power of blockchain, the Auction App eliminates the need for intermediaries, reduces fees, and ensures that every user gets a fair chance to win their desired items.
+- Node.js and npm
+- MongoDB running locally, or a MongoDB connection URI
+- Truffle CLI available as `truffle`
+- Ganache
+- MetaMask installed in your browser
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ahmedramibelghuith/Blockchain-Auction.git
+cd Blockchain-Auction
+```
+
+If you already have a local copy, start from its root directory.
+
+### 2. Install application dependencies
+
+```bash
+npm install --prefix auction-backend
+npm install --prefix auction-app-front
+```
+
+The frontend currently imports `react-icons` without declaring it in its package manifest. Install it before starting the frontend:
+
+```bash
+npm install --prefix auction-app-front react-icons
+```
+
+### 3. Start the local blockchain and deploy the contract
+
+Start Ganache with its RPC server at `http://127.0.0.1:7545`, matching `auction-app/truffle-config.js`.
+
+From the repository root:
+
+```bash
+cd auction-app
+truffle compile
+truffle migrate --network development
+cd ..
+```
+
+Copy the generated contract artifact into the frontend so it uses your deployment's ABI and network address:
+
+```bash
+cp auction-app/build/contracts/AuctionManager.json \
+  auction-app-front/src/contracts/AuctionManager.json
+```
+
+Repeat deployment and the artifact copy if you reset the local blockchain.
+
+### 4. Start the backend
+
+With MongoDB running, open a terminal from the repository root:
+
+```bash
+cd auction-backend
+node server.js
+```
+
+The API runs at `http://localhost:5000`. Its default MongoDB URI is `mongodb://localhost:27017/auction-db`.
+
+To use a different database, provide `MONGO_URL` when starting the server:
+
+```bash
+MONGO_URL='mongodb://127.0.0.1:27017/auction-db' node server.js
+```
+
+### 5. Start the frontend
+
+In another terminal, from the repository root:
+
+```bash
+cd auction-app-front
+npm start
+```
+
+The frontend normally opens at `http://localhost:3000` and calls the API at `http://localhost:5000`.
+
+### 6. Connect MetaMask
+
+Add your Ganache network in MetaMask using the RPC URL above and the chain ID shown by Ganache. Import a Ganache development account, switch to that network, and connect it to the application. Use the account's local test ETH to create an auction and place bids.
+
+## Project structure
+
+```text
+auction-app/          Solidity contract, Truffle configuration, migrations, and screenshots
+auction-app-front/    React interface and contract artifact used by Web3.js
+auction-backend/      Express API, auction data model, and image storage
+```
+
